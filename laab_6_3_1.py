@@ -1,14 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np 
 
-def circle_plottrer(radius=10):
+def ellips_plottrer(a=10, b=10):
 
-    x = np.arange(2*radius, -2*radius, 0.1)
-    y = np.arange(-2*radius, 2*radius, 0.1)
+    x = 
+    y =
 
     X, Y = np.meshgrid(x, y)
 
-    fxy = X**2 + Y**2 - radius**2
+    fxy = 1 - Y**2 / b**2 * a**2 
 
     plt.contour( X, Y, fxy, levels = [0])
     plt.axis('equal') 
@@ -16,4 +16,4 @@ def circle_plottrer(radius=10):
     plt.savefig('lab3.png')
     
 if __name__ == '__main__':
-	circle_plottrer()
+	ellips_plottrer()
