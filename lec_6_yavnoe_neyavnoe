@@ -12,7 +12,7 @@ def circle_plottrer(radius=10):
 
     plt.contour( X, Y, fxy, levels = [0])
      
-
+    plt.axis('equal')
     plt.savefig('fig_4.png')
     
 if __name__ == '__main__':
