@@ -1,17 +1,56 @@
 import matplotlib.pyplot as plt
 import numpy as np
- 
- 
-def circle_plotter(R=3):
-    alpha = np.arange(-2*np.pi, 2*np.pi, 0.1)  # Параметр
- 
-    x = R * np.cos**3(alpha)
-    y = R * np.sin**3(alpha)
- 
-    plt.plot(x, y, ls='--', lw=3)
-    plt.axis('equal')
-    plt.savefig('fig_1.png')
- 
- 
+from matplotlib.animation import FuncAnimation
+
+def cicloida_plotter(R=10):
+    
+    alpha = np.arange(0, 2*np.pi, 0.01)
+    
+    
+    #x = R * (alpha - 0,25 * (3*np.sin(alpha) - np.sin(3*alpha)))
+    #y = R * (1 - 0,25 * (3*np.cos(alpha) - np.cos(3*alpha)))
+    
+    x = R * (alpha - np.sin(alpha))
+    y = R * (1 - np.cos(alpha))
+    
+    plt.plot(x, y, ls='-', lw=5)
+    
+    plt.savefig('lab_7_1.gif')
+
 if __name__ == '__main__':
-    circle_plotter() 
+	cicloida_plotter()   
+
+
+def circle_move(R, vx0, vy0, time):
+    x0 = vx0 * time
+    y0 = vy0 * time
+    alpha = np.arange(0, 2*np.pi, 0.01)
+    x = x0 + R*np.cos(alpha)
+    y = y0 + R*np.sin(alpha)
+    return x, y
+
+
+ 
+ 
+def animate(i):
+    ball.set_data(circle_move(R=1, vx0=0.001, vy0=0.01, time=i))
+ 
+ 
+	
+if __name__ == '__main__':
+ 
+    fig, ax = plt.subplots()
+    ball, = plt.plot([], [], '-', color='r', label='Ball')
+ 
+    edge = 3
+    plt.axis('equal')
+    ax.set_xlim(-edge, edge)
+    ax.set_ylim(-edge, edge)
+    
+    ani = FuncAnimation(fig,
+                        animate,
+                        frames=320,
+                        interval=30
+                       )
+ 
+    ani.save('lab_7_1.gif') 
